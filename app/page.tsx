@@ -2,6 +2,7 @@
 
 import { useState } from 'react'
 import Link from 'next/link'
+import Image from 'next/image'
 
 // ==================== SITE DATA ====================
 const site = {
@@ -115,7 +116,7 @@ const site = {
   partners: ["Beeinfotech", "Nutanix", "VMware", "Microsoft", "CrowdStrike", "Verkada", "Fortinet"],
 }
 
-// Types for better TypeScript support
+// Types
 interface Service {
   imageAlt: string;
   image: any;
@@ -162,34 +163,31 @@ function Navbar() {
   return (
     <header className="fixed top-0 left-0 right-0 z-50 px-4 sm:px-6 pt-4">
       <div className="mx-auto max-w-7xl">
-        <div className="glass rounded-2xl px-5 py-3 flex items-center justify-between backdrop-blur-xl bg-black/40 border border-white/10">
+        <div className="glass-nav rounded-2xl px-5 py-3 flex items-center justify-between backdrop-blur-xl bg-white/5 border border-white/10">
           <Link href="/" className="flex items-center gap-3 group">
-            <div className="w-9 h-9 bg-gradient-to-br from-[#C8702A] to-[#E8974A] rounded-xl flex items-center justify-center text-white font-bold shadow-lg transition-transform group-hover:scale-105">
+            <div className="w-9 h-9 bg-gradient-to-br from-blue-500 to-cyan-400 rounded-xl flex items-center justify-center text-white font-bold shadow-lg transition-transform group-hover:scale-105">
               BQ
             </div>
             <span className="font-semibold tracking-wide text-white/90 hidden sm:inline">{site.brandShort}</span>
           </Link>
 
-          {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center gap-8 text-sm">
             {nav.map((i) => (
               <Link 
                 key={i.href} 
                 href={i.href} 
-                className="text-white/60 hover:text-white transition-all duration-300 font-medium"
+                className="text-white/60 hover:text-cyan-400 transition-all duration-300 font-medium"
               >
                 {i.label}
               </Link>
             ))}
           </nav>
 
-          {/* Desktop CTA */}
           <div className="hidden md:flex items-center gap-3">
-            <Link href="#contact" className="px-4 py-2 text-white/70 hover:text-white transition-all duration-300 font-medium">Talk to Us</Link>
-            <Link href="#contact" className="btn-copper">{site.ctaPrimary}</Link>
+            <Link href="#contact" className="px-4 py-2 text-white/70 hover:text-cyan-400 transition-all duration-300 font-medium">Talk to Us</Link>
+            <Link href="#contact" className="btn-primary">{site.ctaPrimary}</Link>
           </div>
 
-          {/* Mobile menu button */}
           <button 
             className="md:hidden p-2 rounded-lg hover:bg-white/10 transition-all"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
@@ -205,15 +203,14 @@ function Navbar() {
           </button>
         </div>
 
-        {/* Mobile menu */}
         {mobileMenuOpen && (
-          <div className="md:hidden mt-2 glass rounded-2xl p-4 backdrop-blur-xl bg-black/60 border border-white/10">
+          <div className="md:hidden mt-2 glass-nav rounded-2xl p-4 backdrop-blur-xl bg-black/60 border border-white/10">
             <nav className="flex flex-col gap-2">
               {nav.map((i) => (
                 <Link 
                   key={i.href} 
                   href={i.href} 
-                  className="text-white/70 hover:text-white hover:bg-white/10 transition-all px-4 py-3 rounded-xl"
+                  className="text-white/70 hover:text-cyan-400 hover:bg-white/10 transition-all px-4 py-3 rounded-xl"
                   onClick={() => setMobileMenuOpen(false)}
                 >
                   {i.label}
@@ -221,7 +218,7 @@ function Navbar() {
               ))}
               <Link 
                 href="#contact" 
-                className="btn-copper w-full text-center mt-2"
+                className="btn-primary w-full text-center mt-2"
                 onClick={() => setMobileMenuOpen(false)}
               >
                 {site.ctaPrimary}
@@ -238,22 +235,21 @@ function Navbar() {
 function Hero() {
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-      {/* Animated Background effects */}
       <div className="absolute inset-0 opacity-70 pointer-events-none">
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(200,112,42,0.2),transparent_55%)] animate-pulse-slow" />
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom,rgba(56,189,248,0.08),transparent_60%)]" />
-        <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:60px_60px]" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(59,130,246,0.3),transparent_55%)] animate-pulse-slow" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom,rgba(6,182,212,0.2),transparent_60%)]" />
+        <div className="absolute inset-0 bg-[linear-gradient(rgba(59,130,246,0.05)_1px,transparent_1px),linear-gradient(90deg,rgba(6,182,212,0.05)_1px,transparent_1px)] bg-[size:60px_60px]" />
       </div>
 
       <div className="relative z-10 mx-auto max-w-6xl px-4 sm:px-6 pt-32 pb-20 text-center">
-        <div className="tag mb-6 justify-center mx-auto w-fit animate-fade-in-up">
-          <span className="h-2 w-2 rounded-full bg-[#C8702A] animate-pulse" />
+        <div className="tag mb-6 justify-center mx-auto w-fit animate-fade-in-up border-cyan-400/50">
+          <span className="h-2 w-2 rounded-full bg-cyan-400 animate-pulse" />
           BeQuik x Beeinfotech • Colocation • Infrastructure • Security
         </div>
 
         <h1 className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-bold leading-[1.1] tracking-tight animate-fade-in-up animation-delay-200">
           Enterprise-grade{" "}
-          <span className="bg-gradient-to-r from-[#C8702A] via-[#E8974A] to-[#F2B07A] bg-clip-text text-transparent italic">
+          <span className="bg-gradient-to-r from-blue-500 via-cyan-400 to-blue-600 bg-clip-text text-transparent italic">
             colocation & infrastructure
           </span>{" "}
           built for uptime.
@@ -264,27 +260,26 @@ function Hero() {
         </p>
 
         <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4 animate-fade-in-up animation-delay-400">
-          <Link href="#contact" className="btn-copper w-full sm:w-auto group">
+          <Link href="#contact" className="btn-primary w-full sm:w-auto group">
             {site.ctaPrimary}
             <span className="inline-block transition-transform group-hover:translate-x-1">→</span>
           </Link>
-          <Link href="#services" className="btn-ghost w-full sm:w-auto">{site.ctaSecondary}</Link>
+          <Link href="#services" className="btn-secondary w-full sm:w-auto">{site.ctaSecondary}</Link>
         </div>
 
         <div className="mt-16 glass-card rounded-2xl px-5 py-6 grid grid-cols-2 md:grid-cols-4 gap-4 max-w-3xl mx-auto animate-fade-in-up animation-delay-500">
           {site.heroStats.map((stat) => (
             <div key={stat.label} className="flex flex-col items-center gap-1">
-              <div className="text-xl sm:text-2xl font-bold text-[#E8974A]">{stat.value}</div>
+              <div className="text-xl sm:text-2xl font-bold text-cyan-400">{stat.value}</div>
               <div className="text-xs text-white/50 text-center">{stat.label}</div>
             </div>
           ))}
         </div>
       </div>
 
-      {/* Scroll indicator */}
       <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
-        <div className="w-6 h-10 border-2 border-white/30 rounded-full flex justify-center">
-          <div className="w-1 h-2 bg-white/50 rounded-full mt-2 animate-scroll" />
+        <div className="w-6 h-10 border-2 border-cyan-400/30 rounded-full flex justify-center">
+          <div className="w-1 h-2 bg-cyan-400/50 rounded-full mt-2 animate-scroll" />
         </div>
       </div>
     </section>
@@ -292,8 +287,6 @@ function Hero() {
 }
 
 // Services Component
-import Image from 'next/image' // Add this import sa top ng file
-
 function Services() {
   return (
     <section id="services" className="py-24 sm:py-32">
@@ -302,7 +295,7 @@ function Services() {
           <div>
             <div className="tag mb-4 w-fit">// SERVICES</div>
             <h2 className="section-title">
-              Every layer of your stack. <span className="text-[#E8974A] italic">One partner.</span>
+              Every layer of your stack. <span className="text-cyan-400 italic">One partner.</span>
             </h2>
           </div>
           <p className="text-white/60 max-w-md md:text-right">
@@ -314,11 +307,10 @@ function Services() {
           {site.services.map((service: Service, index: number) => (
             <div 
               key={service.title} 
-              className="glass-card rounded-2xl overflow-hidden hover:bg-white/[0.06] transition-all duration-500 group cursor-pointer animate-fade-in-up"
+              className="glass-card rounded-2xl overflow-hidden hover:bg-blue-500/10 transition-all duration-500 group cursor-pointer animate-fade-in-up"
               style={{ animationDelay: `${index * 100}ms` }}
             >
-              {/* Image Section - ito ang lalagyan ng picture mo */}
-              <div className="relative h-56 w-full overflow-hidden bg-gradient-to-br from-[#C8702A]/20 to-[#E8974A]/20">
+              <div className="relative h-56 w-full overflow-hidden bg-gradient-to-br from-blue-500/20 to-cyan-500/20">
                 {service.image ? (
                   <Image
                     src={service.image}
@@ -328,7 +320,6 @@ function Services() {
                     className="object-cover group-hover:scale-110 transition-transform duration-500"
                   />
                 ) : (
-                  // Placeholder kung walang images
                   <div className="w-full h-full flex items-center justify-center">
                     <div className="text-center">
                       <div className="text-5xl mb-2">📷</div>
@@ -338,12 +329,11 @@ function Services() {
                 )}
               </div>
               
-              {/* Content Section */}
               <div className="p-7">
-                <div className="tag mb-4 w-fit group-hover:bg-[#C8702A]/20 transition-all">
+                <div className="tag mb-4 w-fit group-hover:bg-cyan-500/20 transition-all">
                   {service.tag}
                 </div>
-                <h3 className="text-xl font-semibold group-hover:text-[#E8974A] transition-colors">
+                <h3 className="text-xl font-semibold group-hover:text-cyan-400 transition-colors">
                   {service.title}
                 </h3>
                 <p className="text-white/60 mt-3 text-sm leading-relaxed">
@@ -353,7 +343,7 @@ function Services() {
                 <ul className="mt-6 space-y-2">
                   {service.bullets.map((bullet: string) => (
                     <li key={bullet} className="text-sm flex items-start gap-2">
-                      <span className="mt-1.5 h-1.5 w-1.5 rounded-full bg-[#C8702A] flex-shrink-0" />
+                      <span className="mt-1.5 h-1.5 w-1.5 rounded-full bg-cyan-400 flex-shrink-0" />
                       <span className="text-white/60">{bullet}</span>
                     </li>
                   ))}
@@ -361,7 +351,7 @@ function Services() {
 
                 <Link 
                   href="#contact" 
-                  className="mt-6 inline-flex items-center gap-2 text-[#E8974A] font-semibold hover:gap-3 transition-all"
+                  className="mt-6 inline-flex items-center gap-2 text-cyan-400 font-semibold hover:gap-3 transition-all group-hover:text-blue-400"
                 >
                   Learn more <span aria-hidden="true">→</span>
                 </Link>
@@ -377,12 +367,12 @@ function Services() {
 // WhyUs Component
 function WhyUs() {
   return (
-    <section id="why" className="py-24 sm:py-32 bg-gradient-to-b from-transparent via-black/20 to-transparent">
+    <section id="why" className="py-24 sm:py-32 bg-gradient-to-b from-transparent via-blue-900/10 to-transparent">
       <div className="mx-auto max-w-7xl px-4 sm:px-6">
         <div className="max-w-3xl mb-12">
           <div className="tag mb-4 w-fit">// WHY BEQUIK</div>
           <h2 className="section-title">
-            Infrastructure that <span className="text-[#E8974A] italic">delivers outcomes</span>.
+            Infrastructure that <span className="text-cyan-400 italic">delivers outcomes</span>.
           </h2>
           <p className="text-white/60 mt-4 text-lg">
             Reliability, security posture, and operational simplicity—before anything else.
@@ -393,13 +383,13 @@ function WhyUs() {
           {site.whyUs.map((item: WhyUsItem, index: number) => (
             <div 
               key={item.title} 
-              className="glass-card rounded-2xl p-7 hover:bg-white/[0.06] transition-all duration-300 group animate-fade-in-up"
+              className="glass-card rounded-2xl p-7 hover:bg-blue-500/10 transition-all duration-300 group animate-fade-in-up"
               style={{ animationDelay: `${index * 100}ms` }}
             >
-              <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-[#C8702A]/20 to-[#E8974A]/20 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
-                <div className="w-6 h-6 rounded-lg bg-gradient-to-br from-[#C8702A] to-[#E8974A]" />
+              <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-blue-500/20 to-cyan-500/20 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                <div className="w-6 h-6 rounded-lg bg-gradient-to-br from-blue-500 to-cyan-400" />
               </div>
-              <h3 className="text-xl font-semibold mb-2">{item.title}</h3>
+              <h3 className="text-xl font-semibold mb-2 text-white group-hover:text-cyan-400 transition-colors">{item.title}</h3>
               <p className="text-white/60 text-sm leading-relaxed">{item.desc}</p>
             </div>
           ))}
@@ -417,7 +407,7 @@ function Results() {
         <div className="text-center mb-12">
           <div className="tag mb-4 mx-auto w-fit">// RESULTS</div>
           <h2 className="section-title">
-            Real infrastructure. <span className="text-[#E8974A] italic">Real outcomes.</span>
+            Real infrastructure. <span className="text-cyan-400 italic">Real outcomes.</span>
           </h2>
         </div>
 
@@ -425,10 +415,10 @@ function Results() {
           {site.results.map((result: Result, index: number) => (
             <div 
               key={result.kpi} 
-              className="glass-card rounded-2xl p-7 hover:bg-white/[0.06] transition-all duration-300 text-center group animate-fade-in-up"
+              className="glass-card rounded-2xl p-7 hover:bg-blue-500/10 transition-all duration-300 text-center group animate-fade-in-up"
               style={{ animationDelay: `${index * 100}ms` }}
             >
-              <div className="text-4xl font-bold text-[#E8974A] mb-4 group-hover:scale-105 transition-transform">
+              <div className="text-4xl font-bold text-cyan-400 mb-4 group-hover:scale-105 transition-transform">
                 {result.kpi === "Faster recovery" && "⚡"}
                 {result.kpi === "Cleaner operations" && "🎯"}
                 {result.kpi === "Predictable scaling" && "📈"}
@@ -450,14 +440,16 @@ function Partners() {
       <div className="mx-auto max-w-7xl px-4 sm:px-6">
         <div className="text-center mb-12">
           <div className="tag mb-4 mx-auto w-fit">// PARTNERS</div>
-          <h2 className="text-3xl sm:text-4xl font-bold">Built on proven technology.</h2>
+          <h2 className="text-3xl sm:text-4xl font-bold">
+            Built on <span className="text-cyan-400">proven technology</span>.
+          </h2>
         </div>
 
         <div className="flex flex-wrap gap-3 justify-center">
           {site.partners.map((partner: string, index: number) => (
             <div 
               key={partner} 
-              className="glass-card rounded-xl px-6 py-3 text-sm font-semibold text-[#F2B07A] hover:bg-white/[0.08] transition-all duration-300 hover:scale-105 cursor-pointer animate-fade-in-up"
+              className="glass-card rounded-xl px-6 py-3 text-sm font-semibold text-cyan-300 hover:bg-blue-500/20 hover:text-cyan-200 transition-all duration-300 hover:scale-105 cursor-pointer animate-fade-in-up"
               style={{ animationDelay: `${index * 50}ms` }}
             >
               {partner}
@@ -483,13 +475,9 @@ function Contact() {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     setIsSubmitting(true)
-    
-    // Simulate form submission
     await new Promise(resolve => setTimeout(resolve, 1000))
-    
     console.log('Form submitted:', formData)
     alert('Thank you for your interest! We will contact you within 1 business day.')
-    
     setFormData({
       name: '',
       email: '',
@@ -502,10 +490,7 @@ function Contact() {
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target
-    setFormData(prev => ({
-      ...prev,
-      [name]: value
-    }))
+    setFormData(prev => ({ ...prev, [name]: value }))
   }
 
   return (
@@ -515,44 +500,44 @@ function Contact() {
           <div className="animate-fade-in-up">
             <div className="tag mb-4 w-fit">// START HERE</div>
             <h2 className="section-title">
-              Let&apos;s plan your <span className="text-[#E8974A] italic">colocation & infrastructure</span>.
+              Let&apos;s plan your <span className="text-cyan-400 italic">colocation & infrastructure</span>.
             </h2>
             <p className="text-white/60 mt-4 text-lg">
               Book a 30-minute assessment. We&apos;ll map your environment and recommend a roadmap.
             </p>
 
             <div className="mt-8 space-y-4">
-              <div className="flex items-center gap-3 p-4 glass-card rounded-xl">
-                <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-[#C8702A]/20 to-[#E8974A]/20 flex items-center justify-center">
-                  <svg className="w-5 h-5 text-[#E8974A]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <div className="flex items-center gap-3 p-4 glass-card rounded-xl hover:bg-blue-500/10 transition-all">
+                <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-blue-500/20 to-cyan-500/20 flex items-center justify-center">
+                  <svg className="w-5 h-5 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                   </svg>
                 </div>
                 <div>
                   <div className="text-xs text-white/50">Email</div>
-                  <div className="text-sm font-semibold">{site.contact.email}</div>
+                  <div className="text-sm font-semibold text-cyan-300">{site.contact.email}</div>
                 </div>
               </div>
-              <div className="flex items-center gap-3 p-4 glass-card rounded-xl">
-                <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-[#C8702A]/20 to-[#E8974A]/20 flex items-center justify-center">
-                  <svg className="w-5 h-5 text-[#E8974A]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <div className="flex items-center gap-3 p-4 glass-card rounded-xl hover:bg-blue-500/10 transition-all">
+                <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-blue-500/20 to-cyan-500/20 flex items-center justify-center">
+                  <svg className="w-5 h-5 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
                   </svg>
                 </div>
                 <div>
                   <div className="text-xs text-white/50">Phone</div>
-                  <div className="text-sm font-semibold">{site.contact.phone}</div>
+                  <div className="text-sm font-semibold text-cyan-300">{site.contact.phone}</div>
                 </div>
               </div>
-              <div className="flex items-center gap-3 p-4 glass-card rounded-xl">
-                <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-[#C8702A]/20 to-[#E8974A]/20 flex items-center justify-center">
-                  <svg className="w-5 h-5 text-[#E8974A]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <div className="flex items-center gap-3 p-4 glass-card rounded-xl hover:bg-blue-500/10 transition-all">
+                <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-blue-500/20 to-cyan-500/20 flex items-center justify-center">
+                  <svg className="w-5 h-5 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.66 0 3-4 3-9s-1.34-9-3-9m0 18c-1.66 0-3-4-3-9s1.34-9 3-9" />
                   </svg>
                 </div>
                 <div>
                   <div className="text-xs text-white/50">Website</div>
-                  <div className="text-sm font-semibold">{site.contact.website}</div>
+                  <div className="text-sm font-semibold text-cyan-300">{site.contact.website}</div>
                 </div>
               </div>
             </div>
@@ -560,45 +545,16 @@ function Contact() {
 
           <div className="glass-card rounded-2xl p-8 animate-fade-in-up animation-delay-200">
             <form onSubmit={handleSubmit} className="space-y-5">
-              <h3 className="text-2xl font-semibold">Request Free Assessment</h3>
+              <h3 className="text-2xl font-semibold bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">Request Free Assessment</h3>
               <p className="text-sm text-white/50">Response within 1 business day.</p>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <Field 
-                  label="Full Name" 
-                  name="name"
-                  placeholder="Juan Dela Cruz" 
-                  value={formData.name}
-                  onChange={handleChange}
-                  required
-                />
-                <Field 
-                  label="Work Email" 
-                  name="email"
-                  placeholder="juan@company.com" 
-                  type="email"
-                  value={formData.email}
-                  onChange={handleChange}
-                  required
-                />
+                <Field label="Full Name" name="name" placeholder="Juan Dela Cruz" value={formData.name} onChange={handleChange} required />
+                <Field label="Work Email" name="email" placeholder="juan@company.com" type="email" value={formData.email} onChange={handleChange} required />
               </div>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <Field 
-                  label="Company" 
-                  name="company"
-                  placeholder="Company Name" 
-                  value={formData.company}
-                  onChange={handleChange}
-                  required
-                />
-                <Field 
-                  label="Mobile" 
-                  name="phone"
-                  placeholder="+63 ..." 
-                  value={formData.phone}
-                  onChange={handleChange}
-                  required
-                />
+                <Field label="Company" name="company" placeholder="Company Name" value={formData.company} onChange={handleChange} required />
+                <Field label="Mobile" name="phone" placeholder="+63 ..." value={formData.phone} onChange={handleChange} required />
               </div>
               <div>
                 <label className="block text-xs font-medium text-white/50 mb-2">Message</label>
@@ -613,11 +569,7 @@ function Contact() {
                 />
               </div>
 
-              <button 
-                className="btn-copper w-full group disabled:opacity-50 disabled:cursor-not-allowed" 
-                type="submit"
-                disabled={isSubmitting}
-              >
+              <button className="btn-primary w-full group disabled:opacity-50 disabled:cursor-not-allowed" type="submit" disabled={isSubmitting}>
                 {isSubmitting ? (
                   <span className="flex items-center justify-center gap-2">
                     <svg className="animate-spin h-5 w-5" viewBox="0 0 24 24">
@@ -633,7 +585,6 @@ function Contact() {
                   </span>
                 )}
               </button>
-
               <p className="text-xs text-center text-white/40">No spam. For assessment scheduling only.</p>
             </form>
           </div>
@@ -643,7 +594,7 @@ function Contact() {
   )
 }
 
-// Field Component for Contact Form
+// Field Component
 function Field({ label, name, placeholder, type = "text", value, onChange, required = false }: FieldProps) {
   return (
     <div>
@@ -652,7 +603,7 @@ function Field({ label, name, placeholder, type = "text", value, onChange, requi
         id={name}
         type={type} 
         name={name}
-        className="w-full rounded-xl px-4 py-3 text-sm outline-none glass-card focus:bg-white/[0.08] transition-all" 
+        className="w-full rounded-xl px-4 py-3 text-sm outline-none glass-card focus:border-cyan-400 focus:ring-1 focus:ring-cyan-400 transition-all" 
         placeholder={placeholder}
         value={value}
         onChange={onChange}
@@ -672,10 +623,10 @@ function Footer() {
             © {new Date().getFullYear()} {site.name}. All rights reserved.
           </div>
           <div className="flex items-center gap-6 text-sm text-white/40">
-            <Link className="hover:text-white/60 transition" href="#services">Services</Link>
-            <Link className="hover:text-white/60 transition" href="#contact">Contact</Link>
-            <Link className="hover:text-white/60 transition" href="#">Privacy</Link>
-            <Link className="hover:text-white/60 transition" href="#">Terms</Link>
+            <Link className="hover:text-cyan-400 transition" href="#services">Services</Link>
+            <Link className="hover:text-cyan-400 transition" href="#contact">Contact</Link>
+            <Link className="hover:text-cyan-400 transition" href="#">Privacy</Link>
+            <Link className="hover:text-cyan-400 transition" href="#">Terms</Link>
           </div>
         </div>
       </div>
@@ -686,7 +637,7 @@ function Footer() {
 // ==================== MAIN PAGE ====================
 export default function Home() {
   return (
-    <main className="min-h-screen bg-gradient-to-b from-[#0A0A0A] via-[#0F0F0F] to-[#0A0A0A]">
+    <main className="min-h-screen bg-gradient-to-b from-slate-900 via-blue-950 to-slate-900">
       <Navbar />
       <Hero />
       <Services />
@@ -716,6 +667,15 @@ export default function Home() {
           100% {
             opacity: 0;
             transform: translateY(10px);
+          }
+        }
+        
+        @keyframes pulse {
+          0%, 100% {
+            opacity: 1;
+          }
+          50% {
+            opacity: 0.5;
           }
         }
         
@@ -749,6 +709,49 @@ export default function Home() {
         
         .animate-pulse-slow {
           animation: pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+        }
+        
+        /* Glass Card Styles */
+        .glass-card {
+          background: rgba(255, 255, 255, 0.03);
+          backdrop-filter: blur(10px);
+          border: 1px solid rgba(6, 182, 212, 0.2);
+          transition: all 0.3s ease;
+        }
+        
+        .glass-card:hover {
+          background: rgba(59, 130, 246, 0.1);
+          border-color: rgba(6, 182, 212, 0.4);
+          box-shadow: 0 0 20px rgba(6, 182, 212, 0.15);
+        }
+        
+        .glass-nav {
+          background: rgba(0, 0, 0, 0.4);
+          backdrop-filter: blur(10px);
+          border: 1px solid rgba(6, 182, 212, 0.2);
+        }
+        
+        /* Button Styles */
+        .btn-primary {
+          @apply px-6 py-3 bg-gradient-to-r from-blue-600 to-cyan-500 rounded-xl font-semibold text-white transition-all hover:shadow-lg hover:scale-105 inline-flex items-center justify-center gap-2;
+        }
+        
+        .btn-primary:hover {
+          box-shadow: 0 0 25px rgba(6, 182, 212, 0.4);
+        }
+        
+        .btn-secondary {
+          @apply px-6 py-3 border border-cyan-400/50 rounded-xl font-semibold text-cyan-300 hover:bg-cyan-500/20 hover:border-cyan-400 transition-all inline-flex items-center justify-center;
+        }
+        
+        /* Tag Styles */
+        .tag {
+          @apply inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-medium bg-blue-500/20 text-cyan-300 border border-cyan-500/30;
+        }
+        
+        /* Section Title */
+        .section-title {
+          @apply text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-white;
         }
       `}</style>
     </main>
