@@ -1,9 +1,9 @@
 import type { Metadata } from 'next'
-import './globals.css'  // This should work without TypeScript errors in Next.js
+import './globals.css'
 
 export const metadata: Metadata = {
   title: 'BeQuik Information Solutions',
-  description: 'Enterprise-grade colocation & infrastructure',
+  description: 'Enterprise-grade colocation & infrastructure built for uptime',
 }
 
 export default function RootLayout({
